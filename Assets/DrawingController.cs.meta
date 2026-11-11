@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 3ef36d9aa9068294484dc2c4e7205bf7
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - linePrefab: {fileID: 3921099431217878881, guid: 989a8f2fb4b952649b31ae632007ce02, type: 3}
+  - pencilCollider: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
