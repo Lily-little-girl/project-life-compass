@@ -1927,7 +1927,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b020d0d9934e4fd4cb6ab9109a128c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TopDownPlayerMovement
-  moveSpeed: 6
+  moveSpeed: 4
   animator: {fileID: 1178554656}
   walkingParameter: isWalking
   spriteRenderer: {fileID: 1178554659}
@@ -2086,7 +2086,7 @@ MonoBehaviour:
   grabKey: 19
   grabRadius: 2
   landingPoint: {fileID: 1513867301}
-  scatterRadius: 1.5
+  scatterRadius: 2
   bounceDuration: 1
   bounceHeight: 1
 --- !u!1 &1333394663
