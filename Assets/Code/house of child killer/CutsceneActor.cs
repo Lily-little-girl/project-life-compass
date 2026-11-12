@@ -40,7 +40,7 @@ public class CutsceneActor : MonoBehaviour
 
     void SetWalking(bool walking)
     {
-        if (animator != null && animator.enabled && animator.runtimeAnimatorController != null)
+        if (animator != null && animator.isActiveAndEnabled && animator.runtimeAnimatorController != null)
         {
             animator.SetBool(walkingID, walking);
         }

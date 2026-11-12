@@ -7,17 +7,17 @@ public class GameOverManager : MonoBehaviour
 {
     [Header("Panels")]
     public GameObject gameOverPanel;
-    public GameObject winPanel;      
-    public CutsceneSequence winCutscene;      // ว่างได้ ถ้ายังไม่มีสไปรต์ชนะ
+    public GameObject winPanel;              // หน้าชนะแบบรอคลิกเริ่มใหม่ (ไม่ต้องใช้ถ้ามีฉากจบ)
+    public CutsceneSequence winCutscene;     // ฉากจบเมื่อชนะ ลาก EndingCutscene ใส่ช่องนี้
 
     [Header("Player")]
-    public GameObject playerObject;        // ว่างได้ จะหาจาก Tag "Player" ให้เอง
+    public GameObject playerObject;
 
     [Header("Timing")]
-    public float extraDelay = 0.5f;        // รอเพิ่มก่อนขึ้นหน้าจอ
-    public float clickDelay = 0.5f;        // กันคลิกพลาดตอนเพิ่งขึ้นหน้าจอ
+    public float extraDelay = 0.5f;
+    public float clickDelay = 0.5f;
 
-    public static bool IsGameOver { get; private set; }   // เกมจบแล้ว (แพ้หรือชนะ)
+    public static bool IsGameOver { get; private set; }
     public static bool HasWon { get; private set; }
 
     private bool panelShown;
@@ -50,7 +50,7 @@ public class GameOverManager : MonoBehaviour
 
     void HandleKidHurt(Kid kid, Hazard hazard)
     {
-        if (IsGameOver) return;   // เด็กคนแรกที่โดนเท่านั้นที่นับ
+        if (IsGameOver) return;
 
         IsGameOver = true;
         FreezePlayer();
@@ -60,7 +60,7 @@ public class GameOverManager : MonoBehaviour
 
     void HandleTimeUp()
     {
-        if (IsGameOver) return;   // ถ้ามีเด็กเจ็บไปก่อนแล้ว ไม่นับว่าชนะ
+        if (IsGameOver) return;
 
         IsGameOver = true;
         HasWon = true;
@@ -81,28 +81,28 @@ public class GameOverManager : MonoBehaviour
         shownAt = Time.time;
     }
 
-   IEnumerator WinSequence()
-{
-    yield return new WaitForSeconds(extraDelay);
-
-    if (winCutscene != null)
+    IEnumerator WinSequence()
     {
-        winCutscene.Play();
-        yield break;   // ไม่ขึ้นหน้าชนะและไม่รอคลิกเริ่มใหม่ เพราะฉากจะพาไปซีนถัดไปเอง
-    }
+        yield return new WaitForSeconds(extraDelay);
 
-    if (winPanel != null)
-    {
-        winPanel.SetActive(true);
-    }
-    else
-    {
-        Debug.Log("เวลาหมด ชนะแล้ว (ยังไม่ได้ใส่ Win Panel)");
-    }
+        if (winCutscene != null)
+        {
+            Debug.Log("ชนะแล้ว: เล่นฉากจบ " + winCutscene.name);
 
-    panelShown = true;
-    shownAt = Time.time;
-}
+            if (!winCutscene.gameObject.activeInHierarchy)
+                winCutscene.gameObject.SetActive(true);
+
+            winCutscene.Play();
+            yield break;   // ไม่ขึ้นหน้าชนะ และไม่รอคลิกเริ่มใหม่
+        }
+
+        Debug.LogWarning("ชนะแล้ว แต่ช่อง Win Cutscene ใน Game Over Manager ยังว่าง จึงใช้หน้าชนะแบบเดิม");
+
+        if (winPanel != null) winPanel.SetActive(true);
+
+        panelShown = true;
+        shownAt = Time.time;
+    }
 
     private void FreezePlayer()
     {

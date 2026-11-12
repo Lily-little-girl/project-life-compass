@@ -7,38 +7,39 @@ using System.Collections.Generic;
 
 public enum CutsceneStepType
 {
-    Dialogue,         // พูดคุย
-    Move,             // เดินไปที่จุด
-    Teleport,         // วาร์ปไปที่จุด
-    FadeActor,        // ตัวละครจางหาย/ปรากฏ
-    SetActorActive,   // เปิด/ปิดตัวละคร
-    SetFacing,        // หันซ้าย/ขวา
-    SetControl,       // ล็อก/ปลดล็อกการควบคุม (ใช้กับผู้เล่น)
-    SetObjectActive,  // เปิด/ปิด object ทั่วไป
-    SetSprite,        // เปลี่ยนสไปรต์ (เช่น ประตูเปิด/ปิด)
-    Wait,             // รอ
-    WaitForAllMoves,  // รอให้ทุกอย่างที่สั่งแบบ "ไม่รอ" เสร็จก่อน
-    FadeScreen,       // เฟดจอดำ/สว่าง
-    InvokeEvent,      // เรียก UnityEvent
-    LoadScene         // โหลดซีนถัดไป
+    Dialogue,
+    Move,
+    Teleport,
+    FadeActor,
+    SetActorActive,
+    SetFacing,
+    SetControl,
+    SetObjectActive,
+    SetSprite,
+    Wait,
+    WaitForAllMoves,
+    FadeScreen,
+    InvokeEvent,
+    LoadScene
 }
 
 [System.Serializable]
 public class CutsceneStep
 {
     public string note;
+    public float waitAfter = 0f;   // เว้นช่วงเพิ่มหลังขั้นนี้ (วินาที)
     public CutsceneStepType type;
 
     [Header("Actor")]
     public CutsceneActor actor;
-    public Transform target;                 // Move / Teleport
-    public float moveSpeed = 0f;             // Move: 0 = ใช้ความเร็วของตัวละคร
-    public bool waitForCompletion = true;    // Move / FadeActor: ไม่ติ๊ก = สั่งแล้วไปขั้นต่อไปเลย (ทำพร้อมกัน)
+    public Transform target;
+    public float moveSpeed = 0f;
+    public bool waitForCompletion = true;
 
     [Header("Flag / Time")]
     [Tooltip("FadeActor=ปรากฏขึ้น(ไม่ติ๊ก=จางหาย), SetActorActive/SetObjectActive=เปิด, SetControl=ให้ควบคุมได้, SetFacing=หันขวา, FadeScreen=จอมืด(ไม่ติ๊ก=สว่าง)")]
     public bool flag = true;
-    public float duration = 1f;              // Wait / FadeActor / FadeScreen
+    public float duration = 1f;
 
     [Header("Dialogue")]
     public bool showLeft = false;
@@ -48,31 +49,45 @@ public class CutsceneStep
     public List<DialogueLine> lines;
 
     [Header("Object / Sprite / Event / Scene")]
-    public GameObject targetObject;          // SetObjectActive
-    public SpriteRenderer targetRenderer;    // SetSprite
-    public Sprite sprite;                    // SetSprite
-    public UnityEvent onInvoke;              // InvokeEvent
-    public string sceneName;                 // LoadScene
+    public GameObject targetObject;
+    public SpriteRenderer targetRenderer;
+    public Sprite sprite;
+    public UnityEvent onInvoke;
+    public string sceneName;
 }
 
 public class CutsceneSequence : MonoBehaviour
 {
+    public static readonly List<CutsceneSequence> All = new List<CutsceneSequence>();
     public static bool IsPlaying { get { return activeCount > 0; } }
     private static int activeCount;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-    private static void ResetStatics() { activeCount = 0; }
+    private static void ResetStatics()
+    {
+        activeCount = 0;
+        All.Clear();
+    }
 
     public DialogueManager dialogueManager;
-    public Image fadeImage;                  // ภาพดำเต็มจอ ไว้เฟดจอ (ว่างได้)
+    public Image fadeImage;
     public bool playOnStart = false;
-    public bool logSteps = false;            // ติ๊กเพื่อดูว่าตอนนี้อยู่ขั้นไหนใน Console
+    public bool logSteps = false;
+    public float pauseAfterMajorSteps = 0.4f;
 
     public List<CutsceneStep> steps;
     public UnityEvent onFinished;
 
+    // ไว้ให้ตัวแสดงสถานะอ่าน
+    public bool IsRunning { get { return running; } }
+    public int CurrentStepIndex { get; private set; }
+    public int ParallelCount { get { return runningParallel; } }
+
     private bool running;
     private int runningParallel;
+
+    void OnEnable()  { if (!All.Contains(this)) All.Add(this); }
+    void OnDisable() { All.Remove(this); }
 
     void Start()
     {
@@ -81,11 +96,7 @@ public class CutsceneSequence : MonoBehaviour
 
     void OnDestroy()
     {
-        if (running)
-        {
-            running = false;
-            activeCount = Mathf.Max(0, activeCount - 1);
-        }
+        Release();
     }
 
     public void Play()
@@ -94,23 +105,82 @@ public class CutsceneSequence : MonoBehaviour
 
         running = true;
         activeCount++;
+        CurrentStepIndex = -1;
+
+        if (logSteps) Debug.Log("Cutscene started: " + name);
+
         StartCoroutine(Run());
+    }
+
+    private void Release()
+    {
+        if (!running) return;
+
+        running = false;
+        activeCount = Mathf.Max(0, activeCount - 1);
     }
 
     private IEnumerator Run()
     {
-        for (int i = 0; i < steps.Count; i++)
+        try
         {
-            if (logSteps) Debug.Log("Cutscene step " + i + ": " + steps[i].type + " " + steps[i].note);
-            yield return ExecuteStep(steps[i]);
+            for (int i = 0; i < steps.Count; i++)
+            {
+                CurrentStepIndex = i;
+                CutsceneStep step = steps[i];
+
+                if (logSteps) Debug.Log("Cutscene step " + i + ": " + step.type + " " + step.note);
+
+                yield return ExecuteStep(step);
+
+                float pause = step.waitAfter;
+                if (IsMajorStep(step)) pause += pauseAfterMajorSteps;
+
+                if (pause > 0f) yield return new WaitForSeconds(pause);
+            }
+
+            // รอการเดิน/เฟดแบบ "ไม่รอ" ที่ยังค้าง แต่ไม่เกิน 15 วินาที
+            float waited = 0f;
+            while (runningParallel > 0 && waited < 15f)
+            {
+                waited += Time.deltaTime;
+                yield return null;
+            }
+
+            if (runningParallel > 0)
+            {
+                Debug.LogWarning("Cutscene " + name + ": มีการเดิน/เฟดแบบไม่รอที่ยังไม่จบ ปิดฉากต่อ");
+                runningParallel = 0;
+            }
+        }
+        finally
+        {
+            // ปล่อยการล็อกเกมเสมอ แม้ฉากพังกลางทาง (ถ้าพัง จะมี error สีแดงใน Console)
+            Release();
         }
 
-        while (runningParallel > 0) yield return null;
-
-        running = false;
-        activeCount = Mathf.Max(0, activeCount - 1);
+        if (logSteps) Debug.Log("Cutscene finished: " + name);
 
         onFinished?.Invoke();
+    }
+
+    private bool IsMajorStep(CutsceneStep s)
+    {
+        switch (s.type)
+        {
+            case CutsceneStepType.Dialogue:
+            case CutsceneStepType.FadeScreen:
+                return true;
+
+            case CutsceneStepType.Move:
+                return s.waitForCompletion;
+
+            case CutsceneStepType.FadeActor:
+                return s.waitForCompletion && s.duration > 0f;
+
+            default:
+                return false;
+        }
     }
 
     private IEnumerator RunParallel(IEnumerator routine)
@@ -223,9 +293,9 @@ public class CutsceneSequence : MonoBehaviour
             case CutsceneStepType.LoadScene:
             {
                 running = false;
-                activeCount = 0;   // กันค่าค้างข้ามซีน
+                activeCount = 0;
                 SceneManager.LoadScene(step.sceneName);
-                yield return new WaitUntil(() => false);   // รอให้ซีนเปลี่ยน ไม่ทำขั้นต่อไป
+                yield return new WaitUntil(() => false);
                 break;
             }
         }
