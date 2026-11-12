@@ -11,5 +11,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/scene child killer/scene_house_of_child_killer.unity
     guid: c706204d96a83404186dfd403f956864
+  - enabled: 1
+    path: Assets/Scenes/main way.unity
+    guid: 22f7c662eb657e249a1bced03d302fff
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

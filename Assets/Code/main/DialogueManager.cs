@@ -48,6 +48,13 @@ public Vector2 leftPitchRange = new Vector2(0.95f, 1.1f);
 public Vector2 rightPitchRange = new Vector2(1.2f, 1.4f);
 public int blipEveryNChars = 2;            // เล่นเสียงทุกกี่ตัวอักษร
 
+[Header("Background Dim")]
+public Image dimOverlay;                 // ภาพดำเต็มจอ อยู่ใต้ภาพตัวละครและกล่องข้อความ
+[Range(0f, 1f)] public float dimAmount = 0.6f;
+public float dimFadeTime = 0.3f;
+
+private Coroutine dimRoutine;
+
     private List<DialogueLine> currentLines;
     private int currentIndex;
     private Action onDialogueFinished;
@@ -69,6 +76,13 @@ public int blipEveryNChars = 2;            // เล่นเสียงทุ�
         dialoguePanel.SetActive(false);
         if (leftPortrait != null) leftPortrait.gameObject.SetActive(false);
         if (rightPortrait != null) rightPortrait.gameObject.SetActive(false);
+        if (dimOverlay != null)
+{
+    Color c = dimOverlay.color;
+    c.a = 0f;
+    dimOverlay.color = c;
+    dimOverlay.gameObject.SetActive(false);
+}
     }
 
     void SetBubbleSide(Speaker speaker)
@@ -143,6 +157,7 @@ void ApplyExpression(DialogueLine line)
         rightActive = showRight;
 
         dialoguePanel.SetActive(true);
+        SetDim(true);
         ShowLine();
     }
 
@@ -157,6 +172,36 @@ void ApplyExpression(DialogueLine line)
         img.color = dimColor;
         img.rectTransform.anchoredPosition = basePos;
     }
+
+    void SetDim(bool on)
+{
+    if (dimOverlay == null) return;
+
+    if (dimRoutine != null) StopCoroutine(dimRoutine);
+    dimRoutine = StartCoroutine(DimRoutine(on ? dimAmount : 0f));
+}
+
+IEnumerator DimRoutine(float targetAlpha)
+{
+    dimOverlay.gameObject.SetActive(true);
+
+    Color c = dimOverlay.color;
+    float startAlpha = c.a;
+    float t = 0f;
+
+    while (t < dimFadeTime)
+    {
+        t += Time.deltaTime;
+        c.a = Mathf.Lerp(startAlpha, targetAlpha, Mathf.Clamp01(t / dimFadeTime));
+        dimOverlay.color = c;
+        yield return null;
+    }
+
+    c.a = targetAlpha;
+    dimOverlay.color = c;
+
+    if (targetAlpha <= 0f) dimOverlay.gameObject.SetActive(false);
+}
 
     void ShowLine()
     {
@@ -275,6 +320,7 @@ void FinishTyping()
     void EndDialogue()
     {
         StopAllCoroutines();
+        SetDim(false);
 
         isTyping = false;
 

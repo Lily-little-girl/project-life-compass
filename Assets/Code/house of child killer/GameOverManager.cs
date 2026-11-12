@@ -7,7 +7,8 @@ public class GameOverManager : MonoBehaviour
 {
     [Header("Panels")]
     public GameObject gameOverPanel;
-    public GameObject winPanel;            // ว่างได้ ถ้ายังไม่มีสไปรต์ชนะ
+    public GameObject winPanel;      
+    public CutsceneSequence winCutscene;      // ว่างได้ ถ้ายังไม่มีสไปรต์ชนะ
 
     [Header("Player")]
     public GameObject playerObject;        // ว่างได้ จะหาจาก Tag "Player" ให้เอง
@@ -80,22 +81,28 @@ public class GameOverManager : MonoBehaviour
         shownAt = Time.time;
     }
 
-    IEnumerator WinSequence()
+   IEnumerator WinSequence()
+{
+    yield return new WaitForSeconds(extraDelay);
+
+    if (winCutscene != null)
     {
-        yield return new WaitForSeconds(extraDelay);
-
-        if (winPanel != null)
-        {
-            winPanel.SetActive(true);
-        }
-        else
-        {
-            Debug.Log("เวลาหมด ชนะแล้ว (ยังไม่ได้ใส่ Win Panel)");
-        }
-
-        panelShown = true;
-        shownAt = Time.time;
+        winCutscene.Play();
+        yield break;   // ไม่ขึ้นหน้าชนะและไม่รอคลิกเริ่มใหม่ เพราะฉากจะพาไปซีนถัดไปเอง
     }
+
+    if (winPanel != null)
+    {
+        winPanel.SetActive(true);
+    }
+    else
+    {
+        Debug.Log("เวลาหมด ชนะแล้ว (ยังไม่ได้ใส่ Win Panel)");
+    }
+
+    panelShown = true;
+    shownAt = Time.time;
+}
 
     private void FreezePlayer()
     {

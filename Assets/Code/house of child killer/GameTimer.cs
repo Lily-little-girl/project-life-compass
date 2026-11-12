@@ -31,7 +31,7 @@ public class GameTimer : MonoBehaviour
 
     void Update()
     {
-        if (finished || GameOverManager.IsGameOver) return;
+        if (finished || GameOverManager.IsGameOver || CutsceneSequence.IsPlaying) return;
 
         remaining -= Time.deltaTime;
 

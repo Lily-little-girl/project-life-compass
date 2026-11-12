@@ -16,7 +16,7 @@ public class PlayerGrabber : MonoBehaviour
 
     void Update()
     {
-        if (GameOverManager.IsGameOver) return;
+        if (GameOverManager.IsGameOver || CutsceneSequence.IsPlaying) return;
 
         if (Keyboard.current != null && Keyboard.current[grabKey].wasPressedThisFrame)
         {

@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using System;
 using System.Collections.Generic;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public enum StoryStepType { Dialogue, SecondCharacterWalkIn ,FirstCharacterWalkOut ,SecondCharacterWalkTo }
 
@@ -23,6 +25,9 @@ public class StoryStep
 
 public class StoryDialogueTrigger : MonoBehaviour
 {
+    [Header("Next Scene")]
+    public string nextSceneName;
+    public float loadDelay = 0.5f;
     public DialogueManager dialogueManager;
     public PlayerMovement playerMovement;
     public SecondCharacterEntrance secondCharacter;
@@ -143,9 +148,23 @@ case StoryStepType.SecondCharacterWalkTo:
         RunStep();
     }
 
-    private void Finish()
+   private void Finish()
+{
+    onDialogueFinished?.Invoke();
+
+    if (!string.IsNullOrEmpty(nextSceneName))
     {
-        playerMovement.SetMovementEnabled(true);
-        onDialogueFinished?.Invoke();
+        // กำลังจะเปลี่ยนซีน ไม่ต้องปลดล็อกผู้เล่น
+        StartCoroutine(LoadNextScene());
+        return;
     }
+
+    playerMovement.SetMovementEnabled(true);
+}
+
+private IEnumerator LoadNextScene()
+{
+    yield return new WaitForSeconds(loadDelay);
+    SceneManager.LoadScene(nextSceneName);
+}
 }

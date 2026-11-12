@@ -14,7 +14,7 @@ public class TimedKidSpawner : MonoBehaviour
 
     void Update()
     {
-        if (runnerKid == null || GameOverManager.IsGameOver) return;
+        if (runnerKid == null || GameOverManager.IsGameOver || CutsceneSequence.IsPlaying) return;
 
         float remain = GameTimer.RemainingTime;
 

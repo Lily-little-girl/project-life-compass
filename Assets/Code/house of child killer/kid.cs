@@ -70,7 +70,7 @@ public class Kid : MonoBehaviour
     void Update()
     {
         // เกมจบแล้ว (แพ้หรือชนะ) ทุกคนยืนนิ่ง
-        if (GameOverManager.IsGameOver)
+        if (GameOverManager.IsGameOver || CutsceneSequence. IsPlaying)
         {
             SetWalking(false);
             return;
