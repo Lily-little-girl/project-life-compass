@@ -26,7 +26,6 @@ public class BlobRunner : MonoBehaviour
     [SerializeField] private bool invertFlip = false;   // โหมด FlipX: ติ๊กถ้า sprite ปกติหันซ้าย
 
     public bool IsRunning { get; private set; }
-    public event Action RunFinished;   // ยิงตอนเดินครบทุกคำสั่ง (ไม่ยิงถ้าโดน Halt)
     public bool Frozen { get; private set; }
 
     public void Halt()
@@ -77,7 +76,6 @@ public class BlobRunner : MonoBehaviour
 
         IsRunning = false;
         onFinished?.Invoke();
-        RunFinished?.Invoke();    // <- เพิ่มบรรทัดนี้
     }
 
     private bool IsInsideArea(Vector3 p)
@@ -119,14 +117,5 @@ public class BlobRunner : MonoBehaviour
         foreach (Collider2D c in Physics2D.OverlapPointAll(p))
             if (c.GetComponent<Obstacle>() != null) return true;
         return false;
-    }
-    public void ConfigureLevel(float newCellSize, Collider2D newPlayArea, float newPadding)
-    {
-        StopAllCoroutines();
-        IsRunning = false;
-        Frozen = false;
-        cellSize = newCellSize;
-        padding = newPadding;
-        if (newPlayArea != null) playAreaCollider = newPlayArea;
     }
 }
