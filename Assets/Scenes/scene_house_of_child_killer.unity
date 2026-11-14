@@ -2066,8 +2066,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 217, y: -230}
-  m_SizeDelta: {x: 196.7847, y: 196.7847}
+  m_AnchoredPosition: {x: 190.89465, y: -230.60709}
+  m_SizeDelta: {x: 248.9954, y: 197.9989}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &808076754
 MonoBehaviour:
@@ -2668,7 +2668,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &946606456
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4148,7 +4148,7 @@ MonoBehaviour:
     sceneName: 
   - note: setactoractive
     waitAfter: 0
-    type: 0
+    type: 4
     actor: {fileID: 985776878}
     target: {fileID: 0}
     moveSpeed: 0
@@ -4238,10 +4238,6 @@ MonoBehaviour:
     - speaker: 0
       expression: {fileID: -8333434954521013970, guid: d787bed976c0fe44f98796dd68f7ad74, type: 3}
       text: "\u0E2B\u0E4B\u0E32 "
-      showName: 0
-    - speaker: 0
-      expression: {fileID: -8333434954521013970, guid: d787bed976c0fe44f98796dd68f7ad74, type: 3}
-      text: "\u0E19\u0E35\u0E48\u0E40\u0E18\u0E2D\u0E25\u0E49\u0E2D\u0E09\u0E31\u0E19\u0E40\u0E25\u0E48\u0E19\u0E40\u0E2B\u0E23\u0E2D \u0E15\u0E25\u0E01\u0E08\u0E31\u0E07\u0E40\u0E25\u0E22\u0E19\u0E30"
       showName: 0
     - speaker: 0
       expression: {fileID: 2429884695898635251, guid: ae2ff7c8285912f4493e40b3dce7706a, type: 3}
