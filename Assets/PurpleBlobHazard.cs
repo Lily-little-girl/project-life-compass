@@ -22,7 +22,7 @@ public class PurpleBlobHazard : MonoBehaviour
 
     private void Update()
     {
-        if (triggered || player == null || gameOver == null) return;
+        if (triggered || player == null || gameOver == null || player.Frozen) return;
 
         Vector2 p = player.transform.position;
         bool hit = hitbox.OverlapPoint(p) ||
