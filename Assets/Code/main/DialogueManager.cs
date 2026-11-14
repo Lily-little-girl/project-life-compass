@@ -16,6 +16,8 @@ public class DialogueLine
     public Speaker speaker = Speaker.Right;
     public Sprite expression;
     [TextArea(2, 4)] public string text;
+    [Tooltip("ติ๊ก =  ชื่อของคนที่พูดบรรทัดนี้้เริ่มตั้งแต่บรรทัดนี้ (ค้างไว้ ขึ้นเฉพาะตอนเขาพูด)")]
+    public bool showName;
 }
 
 public class DialogueManager : MonoBehaviour
@@ -53,6 +55,15 @@ public Image dimOverlay;                 // ภาพดำเต็มจอ �
 [Range(0f, 1f)] public float dimAmount = 0.6f;
 public float dimFadeTime = 0.3f;
 
+[Header("Name Sprites")]
+public Image leftNameImage;      // Image ชื่อฝั่งซ้าย
+public Image rightNameImage;     // Image ชื่อฝั่งขวา
+public float nameFadeTime = 0.15f;
+
+private Sprite leftNameSprite, rightNameSprite;
+private readonly HashSet<Sprite> revealedNames = new HashSet<Sprite>();
+private Coroutine leftNameRoutine, rightNameRoutine;
+
 private Coroutine dimRoutine;
 
     private List<DialogueLine> currentLines;
@@ -77,12 +88,16 @@ private Coroutine dimRoutine;
         if (leftPortrait != null) leftPortrait.gameObject.SetActive(false);
         if (rightPortrait != null) rightPortrait.gameObject.SetActive(false);
         if (dimOverlay != null)
+
+        
 {
     Color c = dimOverlay.color;
     c.a = 0f;
     dimOverlay.color = c;
     dimOverlay.gameObject.SetActive(false);
 }
+HideNameNow(leftNameImage);
+        HideNameNow(rightNameImage);
     }
 
     void SetBubbleSide(Speaker speaker)
@@ -135,31 +150,38 @@ void ApplyExpression(DialogueLine line)
 
     // แบบใหม่: บอกได้ว่าแต่ละบรรทัดใครพูด และจะโชว์ภาพฝั่งไหนบ้าง
     public void StartDialogue(
-        List<DialogueLine> lines,
-        Action onFinished,
-        bool showLeft = true,
-        bool showRight = true,
-        Sprite leftOverride = null,
-        Sprite rightOverride = null)
-    {
-        if (lines == null || lines.Count == 0) return;
+    List<DialogueLine> lines,
+    Action onFinished,
+    bool showLeft = true,
+    bool showRight = true,
+    Sprite leftOverride = null,
+    Sprite rightOverride = null,
+    Sprite leftName = null,
+    Sprite rightName = null)
+{
+    if (lines == null || lines.Count == 0) return;
 
-        currentLines = lines;
-        currentIndex = 0;
-        onDialogueFinished = onFinished;
+    currentLines = lines;
+    currentIndex = 0;
+    onDialogueFinished = onFinished;
 
-        Sprite l = leftOverride != null ? leftOverride : leftSprite;
-        Sprite r = rightOverride != null ? rightOverride : (rightSprite != null ? rightSprite : l);
+    Sprite l = leftOverride != null ? leftOverride : leftSprite;
+    Sprite r = rightOverride != null ? rightOverride : (rightSprite != null ? rightSprite : l);
 
-        SetupPortrait(leftPortrait, l, showLeft, leftBasePos);
-        SetupPortrait(rightPortrait, r, showRight, rightBasePos);
-        leftActive = showLeft;
-        rightActive = showRight;
+    SetupPortrait(leftPortrait, l, showLeft, leftBasePos);
+    SetupPortrait(rightPortrait, r, showRight, rightBasePos);
+    leftActive = showLeft;
+    rightActive = showRight;
 
-        dialoguePanel.SetActive(true);
-        SetDim(true);
-        ShowLine();
-    }
+    leftNameSprite = leftName;
+    rightNameSprite = rightName;
+    HideNameNow(leftNameImage);
+    HideNameNow(rightNameImage);
+
+    dialoguePanel.SetActive(true);
+    SetDim(true);
+    ShowLine();
+}
 
     void SetupPortrait(Image img, Sprite sprite, bool show, Vector2 basePos)
     {
@@ -209,6 +231,7 @@ IEnumerator DimRoutine(float targetAlpha)
 
         SetBubbleSide(line.speaker);
         ApplyExpression(line);
+        UpdateNames(line);
 
         if (leftActive)
             Animate(ref leftRoutine, leftPortrait, leftBasePos, line.speaker == Speaker.Left);
@@ -317,10 +340,73 @@ void FinishTyping()
     ShowLine();
 }
 
+void UpdateNames(DialogueLine line)
+{
+    // บรรทัดที่ติ๊ก Show Name: ชื่อของคนที่พูดบรรทัดนี้ถูกเปิดตั้งแต่ตรงนี้
+    if (line.showName)
+    {
+        Sprite s = line.speaker == Speaker.Left ? leftNameSprite : rightNameSprite;
+        if (s != null) revealedNames.Add(s);
+    }
+
+    ShowName(ref leftNameRoutine, leftNameImage, leftNameSprite,
+             leftActive && line.speaker == Speaker.Left);
+    ShowName(ref rightNameRoutine, rightNameImage, rightNameSprite,
+             rightActive && line.speaker == Speaker.Right);
+}
+
+void ShowName(ref Coroutine routine, Image img, Sprite sprite, bool speakingNow)
+{
+    if (img == null) return;
+
+    bool visible = speakingNow && sprite != null && revealedNames.Contains(sprite);
+
+    if (routine != null) StopCoroutine(routine);
+    if (visible) img.sprite = sprite;
+
+    routine = StartCoroutine(NameFade(img, visible));
+}
+
+IEnumerator NameFade(Image img, bool show)
+{
+    if (show) img.gameObject.SetActive(true);
+    else if (!img.gameObject.activeSelf) yield break;
+
+    Color c = img.color;
+    float start = c.a;
+    float target = show ? 1f : 0f;
+    float t = 0f;
+
+    while (t < nameFadeTime)
+    {
+        t += Time.deltaTime;
+        c.a = Mathf.Lerp(start, target, Mathf.Clamp01(t / nameFadeTime));
+        img.color = c;
+        yield return null;
+    }
+
+    c.a = target;
+    img.color = c;
+
+    if (!show) img.gameObject.SetActive(false);
+}
+
+void HideNameNow(Image img)
+{
+    if (img == null) return;
+
+    Color c = img.color;
+    c.a = 0f;
+    img.color = c;
+    img.gameObject.SetActive(false);
+}
+
     void EndDialogue()
     {
         StopAllCoroutines();
         SetDim(false);
+        HideNameNow(leftNameImage);
+        HideNameNow(rightNameImage);
 
         isTyping = false;
 

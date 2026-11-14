@@ -46,6 +46,8 @@ public class CutsceneStep
     public bool showRight = true;
     public Sprite leftSprite;
     public Sprite rightSprite;
+    public Sprite leftNameSprite;
+    public Sprite rightNameSprite;
     public List<DialogueLine> lines;
 
     [Header("Object / Sprite / Event / Scene")]
@@ -204,14 +206,15 @@ public class CutsceneSequence : MonoBehaviour
 
                 bool finished = false;
                 dialogueManager.StartDialogue(
-                    step.lines,
-                    () => finished = true,
-                    step.showLeft,
-                    step.showRight,
-                    step.leftSprite,
-                    step.rightSprite
-                );
-
+    step.lines,
+    () => finished = true,
+    step.showLeft,
+    step.showRight,
+    step.leftSprite,
+    step.rightSprite,
+    step.leftNameSprite,
+    step.rightNameSprite
+);
                 while (!finished) yield return null;
                 break;
             }

@@ -17,6 +17,8 @@ public class StoryStep
     [Header("ใช้เมื่อ type = Dialogue")]
     public bool showLeft = true;
     public bool showRight = false;
+    public Sprite leftNameSprite;
+    public Sprite rightNameSprite;
     public List<DialogueLine> lines;
     [Header("ใช้เมื่อ type = SecondCharacterWalkTo")]
     public Transform destination;
@@ -89,13 +91,15 @@ public class StoryDialogueTrigger : MonoBehaviour
                     : null;
 
                 dialogueManager.StartDialogue(
-                    step.lines,
-                    NextStep,
-                    step.showLeft,
-                    step.showRight,
-                    null,
-                    rightSprite
-                );
+    step.lines,
+    NextStep,
+    step.showLeft,
+    step.showRight,
+    null,
+    rightSprite,
+    step.leftNameSprite,
+    step.rightNameSprite
+);
                 break;
 
             case StoryStepType.SecondCharacterWalkIn:

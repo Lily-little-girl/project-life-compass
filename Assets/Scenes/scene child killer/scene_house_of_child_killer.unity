@@ -2032,6 +2032,81 @@ Transform:
   m_Children: []
   m_Father: {fileID: 481342760}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &808076752
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 808076753}
+  - component: {fileID: 808076755}
+  - component: {fileID: 808076754}
+  m_Layer: 5
+  m_Name: JUNE
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &808076753
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808076752}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 946606456}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 217, y: -230}
+  m_SizeDelta: {x: 196.7847, y: 196.7847}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &808076754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808076752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -8052914020376505181, guid: 83908faf13289564fa84d263999d36a6, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &808076755
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808076752}
+  m_CullTransparentMesh: 1
 --- !u!1 &808861482
 GameObject:
   m_ObjectHideFlags: 0
@@ -2088,7 +2163,7 @@ Transform:
   m_GameObject: {fileID: 826157104}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.37, y: -0.87, z: 0}
+  m_LocalPosition: {x: 3.41, y: -0.87, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2119,7 +2194,7 @@ Transform:
   m_GameObject: {fileID: 872197286}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.27, y: -0.19, z: 0}
+  m_LocalPosition: {x: -4.27, y: -0.73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2593,7 +2668,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &946606456
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2610,6 +2685,8 @@ RectTransform:
   - {fileID: 1584381251}
   - {fileID: 883581058}
   - {fileID: 280118228}
+  - {fileID: 808076753}
+  - {fileID: 1796966813}
   - {fileID: 88577399}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3259,6 +3336,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -3280,6 +3359,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -3301,6 +3382,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -3322,6 +3405,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -3343,6 +3428,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -3364,6 +3451,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -3385,6 +3474,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -3406,6 +3497,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -3427,6 +3520,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -3448,6 +3543,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -3469,6 +3566,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -3490,6 +3589,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -3511,6 +3612,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -3532,28 +3635,37 @@ MonoBehaviour:
     showRight: 1
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 4670757086692290484, guid: efe546f5b800859439a60aa162ce1e27, type: 3}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: -2019694992791186919, guid: e5baf142d667ce5459019be22de285e8, type: 3}
     lines:
     - speaker: 1
       expression: {fileID: 4670757086692290484, guid: efe546f5b800859439a60aa162ce1e27, type: 3}
       text: "\u0E02\u0E2D\u0E2D\u0E20\u0E31\u0E22\u0E17\u0E35\u0E48\u0E21\u0E32\u0E0A\u0E49\u0E32\u0E19\u0E30\u0E04\u0E23\u0E31\u0E1A-"
+      showName: 1
     - speaker: 1
       expression: {fileID: -6666077834460347998, guid: a3a88626f312fdd459fcefe67df7fd97, type: 3}
       text: "\u0E14\u0E39\u0E40\u0E2B\u0E21\u0E37\u0E2D\u0E19\u0E17\u0E38\u0E01\u0E04\u0E19\u0E08\u0E30\u0E2A\u0E1A\u0E32\u0E22\u0E14\u0E35\u0E41\u0E2E\u0E30 \u0E40\u0E18\u0E2D\u0E17\u0E33\u0E44\u0E14\u0E49\u0E14\u0E35\u0E21\u0E32\u0E01\u0E40\u0E25\u0E22\u0E19\u0E30\u0E43\u0E19\u0E10\u0E32\u0E19\u0E30\u0E40\u0E14\u0E47\u0E01\u0E1D\u0E36\u0E01\u0E07\u0E32\u0E19"
+      showName: 0
     - speaker: 1
       expression: {fileID: 4670757086692290484, guid: efe546f5b800859439a60aa162ce1e27, type: 3}
       text: "\u0E21\u0E2D\u0E07\u0E41\u0E1A\u0E1A\u0E19\u0E35\u0E49\u0E04\u0E37\u0E2D\u0E2D\u0E30\u0E44\u0E23\u0E40\u0E2B\u0E23\u0E2D\u0E04\u0E23\u0E31\u0E1A? \u0E1E\u0E36\u0E48\u0E07\u0E1C\u0E48\u0E32\u0E19\u0E44\u0E1B\u0E41\u0E04\u0E48 40 \u0E27\u0E34 \u0E40\u0E2B\u0E23\u0E2D "
+      showName: 0
     - speaker: 1
       expression: {fileID: -6666077834460347998, guid: a3a88626f312fdd459fcefe67df7fd97, type: 3}
       text: "\u0E2B\u0E23\u0E37\u0E2D\u0E40\u0E18\u0E2D\u0E2D\u0E22\u0E32\u0E01\u0E25\u0E2D\u0E07\u0E14\u0E39\u0E41\u0E25\u0E40\u0E14\u0E47\u0E01\u0E46\u0E41\u0E1A\u0E1A 10 \u0E19\u0E32\u0E17\u0E35\u0E25\u0E48\u0E30"
+      showName: 0
     - speaker: 1
       expression: {fileID: 4670757086692290484, guid: efe546f5b800859439a60aa162ce1e27, type: 3}
       text: "\u0E40\u0E2D\u0E4B \u0E44\u0E21\u0E48\u0E0A\u0E2D\u0E1A\u0E40\u0E2B\u0E23\u0E2D\u0E04\u0E23\u0E31\u0E1A"
+      showName: 0
     - speaker: 1
       expression: {fileID: -6666077834460347998, guid: a3a88626f312fdd459fcefe67df7fd97, type: 3}
       text: "\u0E21\u0E31\u0E19\u0E2D\u0E18\u0E34\u0E1A\u0E32\u0E22\u0E44\u0E14\u0E49\u0E22\u0E32\u0E01\u0E19\u0E30\u0E40\u0E27\u0E25\u0E32\u0E17\u0E35\u0E48\u0E40\u0E18\u0E2D\u0E41\u0E17\u0E1A\u0E44\u0E21\u0E48\u0E1E\u0E39\u0E14\u0E2D\u0E30\u0E44\u0E23\u0E40\u0E25\u0E22..."
+      showName: 0
     - speaker: 1
       expression: {fileID: 4670757086692290484, guid: efe546f5b800859439a60aa162ce1e27, type: 3}
       text: "\u0E07\u0E31\u0E49\u0E19\u0E40\u0E2D\u0E32\u0E40\u0E1B\u0E47\u0E19\u0E27\u0E48\u0E32\u0E40\u0E23\u0E32\u0E25\u0E2D\u0E07\u0E21\u0E32"
+      showName: 0
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
     sprite: {fileID: 0}
@@ -3574,6 +3686,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -3595,6 +3709,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -3616,6 +3732,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -3637,6 +3755,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -3658,6 +3778,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -3679,13 +3801,17 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: -5547272974818959203, guid: fec391ae300f7244fb5f5aba695545a1, type: 3}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines:
     - speaker: 0
       expression: {fileID: -5547272974818959203, guid: fec391ae300f7244fb5f5aba695545a1, type: 3}
       text: "\u0E1E\u0E35\u0E48 \u0E46 \u0E2B\u0E19\u0E39\u0E27\u0E32\u0E14\u0E14\u0E2D\u0E01\u0E44\u0E21\u0E49\u0E2A\u0E27\u0E22\u0E44\u0E2B\u0E21"
+      showName: 0
     - speaker: 0
       expression: {fileID: -5547272974818959203, guid: fec391ae300f7244fb5f5aba695545a1, type: 3}
       text: "\u0E40\u0E2D\u0E4B \u0E17\u0E33\u0E44\u0E21\u0E17\u0E33\u0E2B\u0E19\u0E49\u0E32\u0E2D\u0E22\u0E48\u0E32\u0E07\u0E07\u0E31\u0E49\u0E19 \u0E41\u0E25\u0E49\u0E27\u0E1E\u0E35\u0E48\u0E27\u0E32\u0E14\u0E43\u0E2B\u0E49\u0E2A\u0E27\u0E22\u0E01\u0E27\u0E48\u0E32\u0E44\u0E14\u0E49\u0E21\u0E31\u0E49\u0E22\u0E25\u0E48\u0E30"
+      showName: 0
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
     sprite: {fileID: 0}
@@ -3706,6 +3832,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -3727,6 +3855,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -3748,6 +3878,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -3769,6 +3901,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -3790,6 +3924,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -3811,6 +3947,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -3832,6 +3970,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -3853,6 +3993,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -3874,6 +4016,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -3895,6 +4039,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -3916,28 +4062,37 @@ MonoBehaviour:
     showRight: 1
     leftSprite: {fileID: 2429884695898635251, guid: ae2ff7c8285912f4493e40b3dce7706a, type: 3}
     rightSprite: {fileID: 4670757086692290484, guid: efe546f5b800859439a60aa162ce1e27, type: 3}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines:
     - speaker: 0
       expression: {fileID: -8333434954521013970, guid: d787bed976c0fe44f98796dd68f7ad74, type: 3}
       text: "\u0E42\u0E0B\u0E25 ! \u0E19\u0E32\u0E22\u0E21\u0E31\u0E27\u0E17\u0E33\u0E2D\u0E30\u0E44\u0E23\u0E2D\u0E22\u0E39\u0E48\u0E40\u0E19\u0E35\u0E48\u0E22"
+      showName: 0
     - speaker: 0
       expression: {fileID: -8333434954521013970, guid: d787bed976c0fe44f98796dd68f7ad74, type: 3}
       text: "\u0E0A\u0E31\u0E49\u0E19\u0E41\u0E04\u0E48\u0E08\u0E30\u0E40\u0E2D\u0E32\u0E02\u0E2D\u0E07\u0E21\u0E32\u0E04\u0E37\u0E19\u0E40\u0E17\u0E48\u0E32\u0E19\u0E31\u0E49\u0E19\u0E40\u0E2D\u0E07 \u0E41\u0E15\u0E48\u0E40\u0E2B\u0E47\u0E19\u0E04\u0E19\u0E16\u0E49\u0E33\u0E21\u0E2D\u0E07\u0E2D\u0E22\u0E39\u0E48\u0E2B\u0E19\u0E49\u0E32\u0E28\u0E39\u0E19\u0E22\u0E4C\u0E19\u0E32\u0E22\u0E40\u0E19\u0E35\u0E48\u0E22"
+      showName: 0
     - speaker: 1
       expression: {fileID: 4670757086692290484, guid: efe546f5b800859439a60aa162ce1e27, type: 3}
       text: "\u0E04\u0E19\u0E16\u0E49\u0E33\u0E21\u0E2D\u0E07?"
+      showName: 0
     - speaker: 0
       expression: {fileID: -8333434954521013970, guid: d787bed976c0fe44f98796dd68f7ad74, type: 3}
       text: "\u0E43\u0E0A\u0E48 \u0E44\u0E21\u0E48\u0E2A\u0E34 \u0E2B\u0E23\u0E37\u0E2D\u0E27\u0E48\u0E32\u0E19\u0E31\u0E48\u0E19\u0E04\u0E37\u0E2D\u0E40\u0E14\u0E47\u0E01\u0E1D\u0E36\u0E01\u0E07\u0E32\u0E19\u0E17\u0E35\u0E48\u0E19\u0E32\u0E22\u0E1E\u0E39\u0E14\u0E16\u0E36\u0E07"
+      showName: 0
     - speaker: 1
       expression: {fileID: 729778127006119710, guid: 430326d9d24a4884ea580f1d34841021, type: 3}
       text: "\u0E40\u0E14\u0E35\u0E4B\u0E22\u0E27\u0E19\u0E30\u0E04\u0E23\u0E31\u0E1A?"
+      showName: 0
     - speaker: 0
       expression: {fileID: -8333434954521013970, guid: d787bed976c0fe44f98796dd68f7ad74, type: 3}
       text: ...
+      showName: 0
     - speaker: 1
       expression: {fileID: -6666077834460347998, guid: a3a88626f312fdd459fcefe67df7fd97, type: 3}
       text: "\u0E40\u0E14\u0E35\u0E4B\u0E22\u0E27\u0E1C\u0E21\u0E21\u0E32\u0E19\u0E30\u0E04\u0E23\u0E31\u0E1A"
+      showName: 0
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
     sprite: {fileID: 0}
@@ -3958,6 +4113,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -3979,6 +4136,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -4000,6 +4159,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -4021,10 +4182,13 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 2429884695898635251, guid: ae2ff7c8285912f4493e40b3dce7706a, type: 3}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines:
     - speaker: 0
       expression: {fileID: -8333434954521013970, guid: d787bed976c0fe44f98796dd68f7ad74, type: 3}
       text: "\u0E17\u0E33\u0E44\u0E21\u0E2B\u0E21\u0E2D\u0E19\u0E31\u0E48\u0E19\u0E16\u0E36\u0E07\u0E44\u0E21\u0E48\u0E23\u0E39\u0E49\u0E15\u0E31\u0E27\u0E40\u0E25\u0E22? \u0E1B\u0E01\u0E1B\u0E01\u0E15\u0E34\u0E44\u0E21\u0E48\u0E40\u0E2B\u0E47\u0E19\u0E40\u0E1B\u0E47\u0E19\u0E41\u0E1A\u0E1A\u0E19\u0E35\u0E49\u0E19\u0E30"
+      showName: 0
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
     sprite: {fileID: 0}
@@ -4045,6 +4209,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -4066,19 +4232,25 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 2429884695898635251, guid: ae2ff7c8285912f4493e40b3dce7706a, type: 3}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines:
     - speaker: 0
       expression: {fileID: -8333434954521013970, guid: d787bed976c0fe44f98796dd68f7ad74, type: 3}
       text: "\u0E2B\u0E4B\u0E32 "
+      showName: 0
     - speaker: 0
       expression: {fileID: -8333434954521013970, guid: d787bed976c0fe44f98796dd68f7ad74, type: 3}
       text: "\u0E19\u0E35\u0E48\u0E40\u0E18\u0E2D\u0E25\u0E49\u0E2D\u0E09\u0E31\u0E19\u0E40\u0E25\u0E48\u0E19\u0E40\u0E2B\u0E23\u0E2D \u0E15\u0E25\u0E01\u0E08\u0E31\u0E07\u0E40\u0E25\u0E22\u0E19\u0E30"
+      showName: 0
     - speaker: 0
       expression: {fileID: 2429884695898635251, guid: ae2ff7c8285912f4493e40b3dce7706a, type: 3}
       text: ...
+      showName: 0
     - speaker: 0
       expression: {fileID: -4373619114205778495, guid: 51bd0a7cbf3c7194ba19cd51cba5f401, type: 3}
       text: "\u0E40\u0E18\u0E2D\u0E0A\u0E2D\u0E1A\u0E17\u0E33\u0E07\u0E32\u0E19\u0E28\u0E34\u0E25\u0E1B\u0E30\u0E07\u0E31\u0E49\u0E19\u0E40\u0E2B\u0E23\u0E2D \u0E2D\u0E22\u0E32\u0E01\u0E21\u0E32\u0E1A\u0E49\u0E32\u0E19\u0E09\u0E31\u0E19\u0E44\u0E2B\u0E21"
+      showName: 0
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
     sprite: {fileID: 0}
@@ -4099,6 +4271,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -4120,6 +4294,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -4141,6 +4317,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -4162,6 +4340,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -4183,6 +4363,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -4204,6 +4386,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -4225,34 +4409,45 @@ MonoBehaviour:
     showRight: 1
     leftSprite: {fileID: -4373619114205778495, guid: 51bd0a7cbf3c7194ba19cd51cba5f401, type: 3}
     rightSprite: {fileID: 4670757086692290484, guid: efe546f5b800859439a60aa162ce1e27, type: 3}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines:
     - speaker: 1
       expression: {fileID: 729778127006119710, guid: 430326d9d24a4884ea580f1d34841021, type: 3}
       text: "\u0E19\u0E35\u0E48\u0E40\u0E18\u0E2D\u0E04\u0E34\u0E14\u0E27\u0E48\u0E32\u0E09\u0E31\u0E19\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E22\u0E34\u0E19\u0E17\u0E35\u0E48\u0E04\u0E38\u0E22\u0E01\u0E31\u0E19\u0E40\u0E2B\u0E23\u0E2D..\u0E08\u0E39\u0E48 \u0E46 \u0E01\u0E47\u0E08\u0E30\u0E1E\u0E32\u0E40\u0E02\u0E32\u0E44\u0E1B\u0E40\u0E19\u0E35\u0E48\u0E22\u0E19\u0E30"
+      showName: 0
     - speaker: 0
       expression: {fileID: -8333434954521013970, guid: d787bed976c0fe44f98796dd68f7ad74, type: 3}
       text: "\u0E04\u0E19\u0E17\u0E35\u0E48\u0E1E\u0E32\u0E04\u0E19\u0E41\u0E1B\u0E25\u0E01\u0E2B\u0E19\u0E49\u0E32\u0E40\u0E02\u0E49\u0E32\u0E21\u0E32\u0E41\u0E17\u0E19\u0E40\u0E14\u0E47\u0E01\u0E1D\u0E36\u0E01\u0E07\u0E32\u0E19\u0E19\u0E48\u0E30\u0E44\u0E21\u0E48\u0E21\u0E35\u0E2A\u0E34\u0E17\u0E18\u0E34\u0E4C\u0E1E\u0E39\u0E14\u0E2B\u0E23\u0E2D\u0E01\u0E19\u0E30..."
+      showName: 0
     - speaker: 1
       expression: {fileID: -6666077834460347998, guid: a3a88626f312fdd459fcefe67df7fd97, type: 3}
       text: "\u0E19\u0E48\u0E32\u0E2D\u0E32\u0E22\u0E0A\u0E30\u0E21\u0E31\u0E14"
+      showName: 0
     - speaker: 1
       expression: {fileID: -6666077834460347998, guid: a3a88626f312fdd459fcefe67df7fd97, type: 3}
       text: ...
+      showName: 0
     - speaker: 0
       expression: {fileID: -4373619114205778495, guid: 51bd0a7cbf3c7194ba19cd51cba5f401, type: 3}
       text: "\u0E16\u0E49\u0E32\u0E19\u0E32\u0E22\u0E40\u0E25\u0E34\u0E01\u0E17\u0E33\u0E15\u0E31\u0E27\u0E2B\u0E27\u0E07\u0E01\u0E49\u0E32\u0E07\u0E41\u0E25\u0E49\u0E27\u0E1B\u0E25\u0E48\u0E2D\u0E22\u0E43\u0E2B\u0E49\u0E40\u0E02\u0E32\u0E21\u0E35\u0E2D\u0E34\u0E2A\u0E23\u0E30\u0E09\u0E31\u0E19\u0E08\u0E30\u0E44\u0E21\u0E48\u0E40\u0E2D\u0E32\u0E44\u0E1B\u0E1A\u0E2D\u0E01\u0E42\u0E23\u0E2A\u0E2B\u0E23\u0E37\u0E2D\u0E41\u0E1F\u0E25\u0E0A"
+      showName: 0
     - speaker: 1
       expression: {fileID: -6666077834460347998, guid: a3a88626f312fdd459fcefe67df7fd97, type: 3}
       text: "\u0E01\u0E47...\u0E01\u0E47\u0E44\u0E14\u0E49"
+      showName: 0
     - speaker: 1
       expression: {fileID: 4670757086692290484, guid: efe546f5b800859439a60aa162ce1e27, type: 3}
       text: "\u0E19\u0E35\u0E48 \u0E22\u0E34\u0E19\u0E14\u0E35\u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E23\u0E39\u0E49\u0E08\u0E31\u0E01\u0E19\u0E30\u0E04\u0E23\u0E31\u0E1A \u0E1A\u0E32\u0E07\u0E17\u0E35\u0E40\u0E23\u0E32\u0E2D\u0E32\u0E08\u0E08\u0E30\u0E40\u0E08\u0E2D\u0E01\u0E31\u0E19\u0E2D\u0E35\u0E01?"
+      showName: 0
     - speaker: 0
       expression: {fileID: -4373619114205778495, guid: 51bd0a7cbf3c7194ba19cd51cba5f401, type: 3}
       text: " \u0E40\u0E2D\u0E32\u0E25\u0E48\u0E30 \u0E40\u0E08\u0E2D\u0E01\u0E31\u0E19\u0E17\u0E35\u0E48\u0E1A\u0E49\u0E32\u0E19\u0E09\u0E31\u0E19\u0E19\u0E30"
+      showName: 0
     - speaker: 0
       expression: {fileID: 2429884695898635251, guid: ae2ff7c8285912f4493e40b3dce7706a, type: 3}
       text: "\u0E21\u0E31\u0E19\u0E15\u0E31\u0E49\u0E07\u0E2D\u0E22\u0E39\u0E48\u0E44\u0E21\u0E48\u0E2B\u0E48\u0E32\u0E07\u0E08\u0E32\u0E01\u0E17\u0E35\u0E48\u0E19\u0E35\u0E48 \u0E41\u0E04\u0E48\u0E40\u0E14\u0E34\u0E19\u0E15\u0E23\u0E07\u0E44\u0E1B\u0E44\u0E21\u0E48\u0E01\u0E35\u0E48\u0E01\u0E49\u0E32\u0E27\u0E40\u0E2D\u0E07"
+      showName: 0
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
     sprite: {fileID: 0}
@@ -4273,6 +4468,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -4294,6 +4491,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -4315,6 +4514,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -4336,6 +4537,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -4357,6 +4560,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -4378,6 +4583,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -4399,6 +4606,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -4752,6 +4961,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -4773,6 +4984,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -4794,6 +5007,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -4815,6 +5030,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -4836,6 +5053,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -4857,6 +5076,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -4878,6 +5099,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -4899,6 +5122,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -4920,28 +5145,37 @@ MonoBehaviour:
     showRight: 1
     leftSprite: {fileID: 0}
     rightSprite: {fileID: -6666077834460347998, guid: a3a88626f312fdd459fcefe67df7fd97, type: 3}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: -2019694992791186919, guid: e5baf142d667ce5459019be22de285e8, type: 3}
     lines:
     - speaker: 1
       expression: {fileID: -6666077834460347998, guid: a3a88626f312fdd459fcefe67df7fd97, type: 3}
       text: "\u0E40\u0E2D\u0E32\u0E2B\u0E25\u0E48\u0E30 \u0E27\u0E34\u0E18\u0E35\u0E40\u0E25\u0E35\u0E49\u0E22\u0E07\u0E40\u0E14\u0E47\u0E01\u0E14\u0E37\u0E49\u0E2D\u0E1E\u0E27\u0E01\u0E19\u0E35\u0E49\u0E2B\u0E25\u0E48\u0E30\u0E01\u0E47\u0E19\u0E30"
+      showName: 1
     - speaker: 1
       expression: {fileID: -6666077834460347998, guid: a3a88626f312fdd459fcefe67df7fd97, type: 3}
       text: "\u0E40\u0E18\u0E2D\u0E01\u0E49\u0E41\u0E04\u0E48\u0E2D\u0E22\u0E48\u0E32\u0E43\u0E2B\u0E49\u0E1E\u0E27\u0E01\u0E40\u0E14\u0E47\u0E01\u0E46\u0E44\u0E1B\u0E22\u0E38\u0E48\u0E07\u0E01\u0E31\u0E1A\u0E02\u0E2D\u0E07\u0E2D\u0E31\u0E19\u0E15\u0E23\u0E32\u0E22\u0E40\u0E14\u0E47\u0E14\u0E02\u0E32\u0E14"
+      showName: 0
     - speaker: 1
       expression: {fileID: 4670757086692290484, guid: efe546f5b800859439a60aa162ce1e27, type: 3}
       text: "\u0E16\u0E49\u0E32\u0E40\u0E01\u0E34\u0E14\u0E40\u0E14\u0E47\u0E01\u0E46\u0E40\u0E14\u0E34\u0E19\u0E44\u0E1B\u0E22\u0E38\u0E48\u0E07\u0E01\u0E31\u0E1A\u0E02\u0E2D\u0E07\u0E2D\u0E31\u0E19\u0E15\u0E23\u0E32\u0E22\u0E2B\u0E25\u0E48\u0E30\u0E01\u0E47"
+      showName: 0
     - speaker: 1
       expression: {fileID: -6666077834460347998, guid: a3a88626f312fdd459fcefe67df7fd97, type: 3}
       text: "\u0E40\u0E18\u0E2D\u0E01\u0E47\u0E41\u0E04\u0E48\u0E40\u0E14\u0E34\u0E19\u0E44\u0E1B\u0E2B\u0E32\u0E40\u0E14\u0E47\u0E01\u0E46\u0E41\u0E25\u0E49\u0E27\u0E01\u0E14\u0E1B\u0E38\u0E48\u0E21 \"E\" \u0E2B\u0E25\u0E48\u0E30"
+      showName: 0
     - speaker: 1
       expression: {fileID: 4670757086692290484, guid: efe546f5b800859439a60aa162ce1e27, type: 3}
       text: "\u0E40\u0E02\u0E49\u0E32\u0E43\u0E08\u0E17\u0E35\u0E48\u0E09\u0E31\u0E19\u0E1E\u0E38\u0E14\u0E43\u0E0A\u0E48\u0E44\u0E2B\u0E21"
+      showName: 0
     - speaker: 1
       expression: {fileID: 4670757086692290484, guid: efe546f5b800859439a60aa162ce1e27, type: 3}
       text: "\u0E42\u0E2D\u0E49 \u0E1C\u0E21\u0E02\u0E2D\u0E2D\u0E19\u0E38\u0E0D\u0E32\u0E15\u0E34\u0E44\u0E1B\u0E23\u0E31\u0E1A\u0E42\u0E17\u0E23\u0E28\u0E31\u0E1E\u0E17\u0E4C\u0E41\u0E1B\u0E1B\u0E19\u0E36\u0E07\u0E19\u0E30\u0E04\u0E23\u0E31\u0E1A"
+      showName: 0
     - speaker: 1
       expression: {fileID: -6666077834460347998, guid: a3a88626f312fdd459fcefe67df7fd97, type: 3}
       text: "\u0E1D\u0E32\u0E01\u0E14\u0E39\u0E41\u0E14\u0E40\u0E14\u0E47\u0E01\u0E46\u0E14\u0E49\u0E27\u0E22 \u0E16\u0E37\u0E2D\u0E40\u0E1B\u0E47\u0E19\u0E01\u0E32\u0E23\u0E40\u0E23\u0E34\u0E48\u0E21\u0E1D\u0E36\u0E01\u0E07\u0E32\u0E19\u0E19\u0E30\u0E04\u0E23\u0E31\u0E1A"
+      showName: 0
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
     sprite: {fileID: 0}
@@ -4962,6 +5196,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -4983,6 +5219,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -5004,6 +5242,8 @@ MonoBehaviour:
     showRight: 0
     leftSprite: {fileID: 0}
     rightSprite: {fileID: 0}
+    leftNameSprite: {fileID: 0}
+    rightNameSprite: {fileID: 0}
     lines: []
     targetObject: {fileID: 0}
     targetRenderer: {fileID: 0}
@@ -5286,6 +5526,81 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &1796966812
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1796966813}
+  - component: {fileID: 1796966815}
+  - component: {fileID: 1796966814}
+  m_Layer: 5
+  m_Name: SOL
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1796966813
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796966812}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 946606456}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -272, y: -230.36}
+  m_SizeDelta: {x: 183.5079, y: 183.51}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1796966814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796966812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -2019694992791186919, guid: e5baf142d667ce5459019be22de285e8, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1796966815
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796966812}
+  m_CullTransparentMesh: 1
 --- !u!1 &1842712314
 GameObject:
   m_ObjectHideFlags: 0
@@ -5556,7 +5871,7 @@ Transform:
   m_GameObject: {fileID: 1944020664}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.63, y: -0.21, z: 0}
+  m_LocalPosition: {x: 4.31, y: -0.21, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5710,6 +6025,9 @@ MonoBehaviour:
   dimOverlay: {fileID: 1584381249}
   dimAmount: 0.7
   dimFadeTime: 0.1
+  leftNameImage: {fileID: 808076754}
+  rightNameImage: {fileID: 1796966814}
+  nameFadeTime: 0.15
 --- !u!4 &1964813617
 Transform:
   m_ObjectHideFlags: 0
