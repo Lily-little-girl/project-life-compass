@@ -9,33 +9,34 @@ using UnityEngine.InputSystem;
 
 /// ใส่สคริปต์นี้ที่ bubble command_0 (ต้องมี Collider2D ด้วย)
 /// คลิกซ้ายที่กล่อง -> พิมพ์ W A S D ได้ (แสดงเป็น ↑ ← ↓ →)
-/// กด Enter บนคีย์บอร์ด หรือคลิกปุ่ม enter -> ยืนยัน แล้ว blob เดินตามคำสั่ง
-/// คลิกปุ่ม X -> พับแผงลงข้างล่าง (เหลือแถบไว้) / คลิกส่วนไหนของแถบก็ได้ -> กางกลับขึ้นมา
+/// กด Enter หรือคลิกปุ่ม enter -> ยืนยัน (ด่านละครั้งเดียว) แล้ว blob เดินตามคำสั่ง
+/// คลิกปุ่ม X -> พับแผงลง / คลิกแถบที่เหลือ -> กางกลับ
 [RequireComponent(typeof(Collider2D))]
 public class CommandInputBox : MonoBehaviour
 {
-    [SerializeField] private TMP_Text commandText;     // ข้อความที่จะโชว์ลูกศร
-    [SerializeField] private BlobRunner runner;        // ลาก blob_0 มาใส่
-    [SerializeField] private Collider2D enterButton;   // Collider2D ของ enter_0
+    [SerializeField] private TMP_Text commandText;
+    [SerializeField] private BlobRunner runner;
+    [SerializeField] private Collider2D enterButton;
     [SerializeField] private int maxCommands = 20;
     [SerializeField] private bool showCursor = true;
-    [SerializeField] private bool clearAfterRun = true; // เดินเสร็จแล้วล้างคำสั่ง
+    [SerializeField] private bool clearAfterRun = true;
 
     [Header("Collapse")]
-    [SerializeField] private Collider2D closeButton;      // Collider2D ของปุ่ม X
-    [SerializeField] private Transform[] moveWithPanel;   // object ที่ต้องเลื่อนตาม เช่น enter_0 (ไม่ต้องใส่ลูกของแผง)
-    [SerializeField] private float peekHeight = 0.35f;    // ส่วนบนของแผงที่ยังโผล่ไว้ตอนพับ (หน่วย Unity)
-    [SerializeField] private float slideTime = 0.25f;     // เวลาสไลด์ (วินาที)
+    [SerializeField] private Collider2D closeButton;
+    [SerializeField] private Transform[] moveWithPanel;
+    [SerializeField] private float peekHeight = 0.35f;
+    [SerializeField] private float slideTime = 0.25f;
 
     public IReadOnlyList<char> Commands => commands;
 
     private readonly List<char> commands = new List<char>();
     private Collider2D box;
     private bool isTyping;
+    private bool used;   // กด enter ไปแล้วในด่านนี้
 
     // ระบบพับ/กาง
     private bool collapsed;
-    private float amount;                 // 0 = กางเต็ม, 1 = พับสุด
+    private float amount;
     private float slideDistance;
     private Vector3 panelShownPos;
     private Vector3[] partShownPos;
@@ -65,7 +66,6 @@ public class CommandInputBox : MonoBehaviour
 
             if (collapsed)
             {
-                // พับอยู่: คลิกส่วนไหนของแถบก็ได้ -> กางออก
                 if (Hit(box, world) || Hit(enterButton, world) || Hit(closeButton, world))
                 {
                     SetCollapsed(false);
@@ -74,11 +74,11 @@ public class CommandInputBox : MonoBehaviour
             }
             else if (Hit(closeButton, world))
             {
-                SetCollapsed(true);                     // กด X -> พับลง
+                SetCollapsed(true);
             }
             else if (Hit(enterButton, world))
             {
-                Confirm();                              // เช็กปุ่ม enter ก่อน (อาจซ้อนกับกล่อง)
+                Confirm();
             }
             else
             {
@@ -140,15 +140,16 @@ public class CommandInputBox : MonoBehaviour
         for (int i = 0; i < partShownPos.Length; i++)
             if (moveWithPanel[i] != null) moveWithPanel[i].position = partShownPos[i] + offset;
 
-        Physics2D.SyncTransforms(); // ให้ collider ขยับตามทันที จะได้คลิกโดนถูกที่
+        Physics2D.SyncTransforms();
     }
 
     // ---------- คำสั่ง ----------
     private void Confirm()
     {
-        if (runner == null || Locked || commands.Count == 0) return;
+        if (runner == null || Locked || used || commands.Count == 0) return;
 
-        // ส่งสำเนาไปให้ blob เพื่อไม่ให้โดนล้างระหว่างเดิน
+        used = true;   // ด่านนี้กดได้ครั้งเดียว
+
         runner.Run(new List<char>(commands), () =>
         {
             if (clearAfterRun) commands.Clear();
@@ -157,7 +158,7 @@ public class CommandInputBox : MonoBehaviour
 
     private void OnCharTyped(char c)
     {
-        if (!isTyping || Locked) return;
+        if (!isTyping || Locked || used) return;
 
         if (c == '\b')
         {
@@ -177,7 +178,7 @@ public class CommandInputBox : MonoBehaviour
         var sb = new StringBuilder();
         foreach (char k in commands) sb.Append(ToArrow(k));
 
-        if (showCursor && isTyping && !Locked && Mathf.Repeat(Time.time, 1f) < 0.5f)
+        if (showCursor && isTyping && !Locked && !used && Mathf.Repeat(Time.time, 1f) < 0.5f)
             sb.Append('_');
 
         commandText.text = sb.ToString();
@@ -192,6 +193,14 @@ public class CommandInputBox : MonoBehaviour
             case 's': return '↓';
             default: return '→';
         }
+    }
+
+    public void ClearCommands() => commands.Clear();
+
+    public void ResetForNewLevel()
+    {
+        commands.Clear();
+        used = false;
     }
 
     private static bool LeftClickedThisFrame()
