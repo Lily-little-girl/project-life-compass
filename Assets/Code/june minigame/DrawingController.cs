@@ -354,4 +354,13 @@ public class DrawingController : MonoBehaviour
         world.z = 0f;
         return world;
     }
+    public void ClearAll()
+    {
+        foreach (LineRenderer l in lines)
+            if (l != null) Destroy(l.gameObject);
+        lines.Clear();
+        currentLine = null;
+        strokeActive = false;
+    }
+
 }
