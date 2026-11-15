@@ -2745,6 +2745,9 @@ MonoBehaviour:
   minerGap: 1.1
   minerCost: 700
   goalMoney: 3000
+  winSceneName: office2
+  loseSceneName: Crypto minigame
+  endDelay: 1.5
   dailyPrice: 00000000d4feffff2003000070feffffe8030000i
   popupTemplate: {fileID: 262447008}
   popupRise: 1

@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class SkipButton : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class SkipButton : MonoBehaviour
 
     public int minerCost = 700;       // ราคาเครื่องขุด
     public int goalMoney = 3000;      // เป้าหมาย
+   [Header("จบเกม")]
+public string winSceneName = "";        // ซีนตอนชนะ (ว่าง = ซีนถัดไปใน Build Settings)
+public string loseSceneName = "GameOver"; // ซีนตอนแพ้ (ใส่ชื่อซีน Game Over ของคุณ)
+public float endDelay = 1.5f;           // รอหลังข่าว/ตัวเลขวันที่ 5 ก่อนย้ายซีน
 
     // ราคาเหรียญของแต่ละวัน Day 1..5 (ใช้ตอนเริ่มวัน)
     public int[] dailyPrice = { 0, -300, 800, -400, 1000 };
@@ -50,13 +55,13 @@ public class SkipButton : MonoBehaviour
     bool busy = false;                // true ระหว่างเฟด กันกดซ้ำ
     Coroutine newsRoutine;
 
-    void Start()
-    {
-        SetFade(0f);                  // เริ่มเกมจอสว่าง
-        ShowDay();
-        UpdateMoney();
-        StartDay();                   // Day 1 (ราคา 0)
-    }
+   void Start()
+{
+    SetFade(0f);
+    ShowDay();
+    UpdateMoney();
+    StartDay();
+}
 
     // คลิกปุ่มข้าม
     void OnMouseDown()
@@ -104,14 +109,31 @@ public class SkipButton : MonoBehaviour
             EndGame();
     }
 
-    void EndGame()
+   void EndGame()
+{
+    gameOver = true;
+    StartCoroutine(EndGameRoutine());
+}
+
+IEnumerator EndGameRoutine()
+{
+    // รอให้ข่าววันที่ 5 พิมพ์จบ + ตัวเลขลอยเล่นจบ
+    yield return new WaitForSeconds(endDelay + popupTime);
+
+    if (money >= goalMoney)
     {
-        gameOver = true;
-        if (money >= goalMoney)
-            Debug.Log("ชนะ! เงิน: " + money);
+        Debug.Log("ชนะ! เงิน: " + money);
+        if (!string.IsNullOrEmpty(winSceneName))
+            SceneManager.LoadScene(winSceneName);
         else
-            Debug.Log("แพ้ เงิน: " + money);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+    else
+    {
+        Debug.Log("แพ้ เงิน: " + money);
+        SceneManager.LoadScene(loseSceneName);
+    }
+}
 
     // ---------- เฟดจอ ----------
     IEnumerator Fade(float from, float to, float duration)

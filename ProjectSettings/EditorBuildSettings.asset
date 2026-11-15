@@ -17,5 +17,20 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/drawing minigame.unity
     guid: 88c6a7c8e3b09fa42ae61cc2d81b1688
+  - enabled: 1
+    path: Assets/Scenes/Sol_to_June.unity
+    guid: 083564844d9548d478b020ad62a94a5b
+  - enabled: 1
+    path: Assets/Scenes/office.unity
+    guid: db92794189bd7914cbf4896a068faaa2
+  - enabled: 1
+    path: Assets/Scenes/June_to_Ross.unity
+    guid: bcf9b74573aa41d49ad9e53e30da1877
+  - enabled: 1
+    path: Assets/Scenes/somewhereidk.unity
+    guid: dca555b53a021144fb46a5a84005cc48
+  - enabled: 1
+    path: Assets/Scenes/blobb minigame.unity
+    guid: c6e4d1503f51ee74eb3a6b3e38ad2a8f
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

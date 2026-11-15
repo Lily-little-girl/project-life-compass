@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CutsceneActor : MonoBehaviour
 {
@@ -17,8 +18,8 @@ public class CutsceneActor : MonoBehaviour
     public bool spriteFacesRightByDefault = false;
 
     [Header("Control (ใช้กับผู้เล่น)")]
-    public MonoBehaviour[] controlScripts;   // สคริปต์เดินที่ต้องปิดระหว่างฉาก เช่น TopDownPlayerMovement
-
+public bool autoDetectMovementScripts = true;   // หา PlayerMovement / TopDownPlayerMovement บน object นี้ให้เอง
+public MonoBehaviour[] controlScripts;          // สคริปต์เดินอื่นที่ต้องปิดเพิ่ม (ว่างได้)
     private Rigidbody2D rb;
     private RigidbodyType2D originalBodyType;
     private bool refsReady;
@@ -119,30 +120,55 @@ public class CutsceneActor : MonoBehaviour
 
     // ปิด = ให้ฉากคุมตัวละคร (ปิดสคริปต์เดิน ไม่ให้ชนกำแพง) / เปิด = คืนการควบคุม
     public void SetControl(bool on)
+{
+    EnsureRefs();
+
+    // 1) บอกสคริปต์เดินผ่านเมธอด SetMovementEnabled
+    SendMessage("SetMovementEnabled", on, SendMessageOptions.DontRequireReceiver);
+
+    // 2) ปิด/เปิดตัวสคริปต์เดิน กันมันสั่ง Animator หรือความเร็วทับฉาก
+    foreach (MonoBehaviour s in GetMovementScripts())
     {
-        EnsureRefs();
-
-        if (controlScripts != null)
-        {
-            foreach (MonoBehaviour s in controlScripts)
-            {
-                if (s != null) s.enabled = on;
-            }
-        }
-
-        if (rb != null)
-        {
-            if (!on)
-            {
-                rb.linearVelocity = Vector2.zero;
-                rb.bodyType = RigidbodyType2D.Kinematic;
-            }
-            else
-            {
-                rb.bodyType = originalBodyType;
-            }
-        }
-
-        if (!on) SetWalking(false);
+        if (s != null) s.enabled = on;
     }
+
+    if (rb != null)
+    {
+        if (!on)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.bodyType = RigidbodyType2D.Kinematic;
+        }
+        else
+        {
+            rb.bodyType = originalBodyType;
+        }
+    }
+
+    if (!on) SetWalking(false);
+}
+
+private List<MonoBehaviour> GetMovementScripts()
+{
+    List<MonoBehaviour> list = new List<MonoBehaviour>();
+
+    if (autoDetectMovementScripts)
+    {
+        PlayerMovement pm = GetComponent<PlayerMovement>();
+        if (pm != null) list.Add(pm);
+
+        TopDownPlayerMovement td = GetComponent<TopDownPlayerMovement>();
+        if (td != null) list.Add(td);
+    }
+
+    if (controlScripts != null)
+    {
+        foreach (MonoBehaviour s in controlScripts)
+        {
+            if (s != null && !list.Contains(s)) list.Add(s);
+        }
+    }
+
+    return list;
+}
 }

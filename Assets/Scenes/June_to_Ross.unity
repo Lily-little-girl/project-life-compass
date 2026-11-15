@@ -431,6 +431,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   flipMethod: 0
   spriteFacesRightByDefault: 0
+  autoDetectMovementScripts: 1
   controlScripts: []
 --- !u!1 &250982651
 GameObject:
@@ -1005,6 +1006,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   flipMethod: 0
   spriteFacesRightByDefault: 0
+  autoDetectMovementScripts: 1
   controlScripts: []
 --- !u!1 &571348442
 GameObject:
@@ -1729,6 +1731,7 @@ MonoBehaviour:
     target: {fileID: 0}
     moveSpeed: 0
     waitForCompletion: 1
+    fadeScreenAround: 0
     flag: 0
     duration: 0.5
     showLeft: 0
@@ -1752,6 +1755,7 @@ MonoBehaviour:
     target: {fileID: 0}
     moveSpeed: 0
     waitForCompletion: 1
+    fadeScreenAround: 0
     flag: 0
     duration: 0.5
     showLeft: 0
@@ -1775,6 +1779,7 @@ MonoBehaviour:
     target: {fileID: 0}
     moveSpeed: 0
     waitForCompletion: 0
+    fadeScreenAround: 0
     flag: 0
     duration: 0.5
     showLeft: 1
@@ -1878,8 +1883,9 @@ MonoBehaviour:
     target: {fileID: 1041458968}
     moveSpeed: 0
     waitForCompletion: 0
+    fadeScreenAround: 1
     flag: 0
-    duration: 0
+    duration: 1
     showLeft: 0
     showRight: 0
     leftSprite: {fileID: 7069736652530832915, guid: ae2ff7c8285912f4493e40b3dce7706a, type: 3}
@@ -1901,6 +1907,7 @@ MonoBehaviour:
     target: {fileID: 0}
     moveSpeed: 0
     waitForCompletion: 0
+    fadeScreenAround: 0
     flag: 0
     duration: 0.5
     showLeft: 1
@@ -1932,6 +1939,7 @@ MonoBehaviour:
     target: {fileID: 0}
     moveSpeed: 0
     waitForCompletion: 0
+    fadeScreenAround: 0
     flag: 1
     duration: 0.5
     showLeft: 1
@@ -3402,6 +3410,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   flipMethod: 0
   spriteFacesRightByDefault: 0
+  autoDetectMovementScripts: 1
   controlScripts: []
 --- !u!1 &1506510963
 GameObject:
@@ -3653,7 +3662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f8c0cbdc1b655b4f80cc617ebd0f2db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StoryDialogueTrigger
-  nextSceneName: Drawing minigame
+  nextSceneName: office
   loadDelay: 0.5
   dialogueManager: {fileID: 593803921}
   playerMovement: {fileID: 1474722731}

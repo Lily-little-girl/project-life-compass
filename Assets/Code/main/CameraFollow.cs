@@ -58,4 +58,18 @@ public class CameraFollow : MonoBehaviour
             smoothSpeed * Time.deltaTime
         );
     }
+
+    public void SnapToTarget()
+{
+    if (target == null) return;
+    if (cam == null) cam = GetComponent<Camera>();
+
+    float height = cam.orthographicSize;
+    float width = height * cam.aspect;
+
+    float x = Mathf.Clamp(target.position.x + offset.x, mapMin.x + width, mapMax.x - width);
+    float y = Mathf.Clamp(target.position.y + offset.y, mapMin.y + height, mapMax.y - height);
+
+    transform.position = new Vector3(x, y, transform.position.z);
+}
 }

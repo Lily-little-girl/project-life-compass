@@ -35,6 +35,8 @@ public class CutsceneStep
     public Transform target;
     public float moveSpeed = 0f;
     public bool waitForCompletion = true;
+    [Tooltip("Teleport: ติ๊ก = จอมืดก่อน แล้ววาร์ป แล้วค่อยสว่าง (ใช้ Duration เป็นเวลาเฟดแต่ละครั้ง)")]
+public bool fadeScreenAround = false;
 
     [Header("Flag / Time")]
     [Tooltip("FadeActor=ปรากฏขึ้น(ไม่ติ๊ก=จางหาย), SetActorActive/SetObjectActive=เปิด, SetControl=ให้ควบคุมได้, SetFacing=หันขวา, FadeScreen=จอมืด(ไม่ติ๊ก=สว่าง)")]
@@ -114,6 +116,12 @@ public class CutsceneSequence : MonoBehaviour
         StartCoroutine(Run());
     }
 
+    private void SnapCamera()
+{
+    CameraFollow cf = FindFirstObjectByType<CameraFollow>();
+    if (cf != null) cf.SnapToTarget();
+}
+
     private void Release()
     {
         if (!running) return;
@@ -124,6 +132,7 @@ public class CutsceneSequence : MonoBehaviour
 
     private IEnumerator Run()
     {
+        yield return null;
         try
         {
             for (int i = 0; i < steps.Count; i++)
@@ -180,6 +189,9 @@ public class CutsceneSequence : MonoBehaviour
             case CutsceneStepType.FadeActor:
                 return s.waitForCompletion && s.duration > 0f;
 
+                case CutsceneStepType.Teleport:
+    return s.fadeScreenAround;
+
             default:
                 return false;
         }
@@ -235,16 +247,28 @@ public class CutsceneSequence : MonoBehaviour
             }
 
             case CutsceneStepType.Teleport:
-            {
-                if (step.actor == null || step.target == null)
-                {
-                    Debug.LogWarning("Teleport ข้าม: ยังไม่ได้ใส่ Actor หรือ Target");
-                    break;
-                }
+{
+    if (step.actor == null || step.target == null)
+    {
+        Debug.LogWarning("Teleport ข้าม: ยังไม่ได้ใส่ Actor หรือ Target");
+        break;
+    }
 
-                step.actor.TeleportTo(step.target.position);
-                break;
-            }
+    if (step.fadeScreenAround)
+    {
+        yield return FadeScreenRoutine(1f, step.duration);   // มืดให้เสร็จก่อน
+        step.actor.TeleportTo(step.target.position);
+        SnapCamera();
+        yield return new WaitForSeconds(0.15f);
+        yield return FadeScreenRoutine(0f, step.duration);   // แล้วค่อยสว่าง
+    }
+    else
+    {
+        step.actor.TeleportTo(step.target.position);
+        SnapCamera();
+    }
+    break;
+}
 
             case CutsceneStepType.FadeActor:
             {

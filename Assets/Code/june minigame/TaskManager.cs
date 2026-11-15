@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class TaskManager : MonoBehaviour
 {
@@ -23,6 +25,11 @@ public class TaskManager : MonoBehaviour
     public TMP_Text timerText;
 
     public UnityEvent onAllFinished;
+    [Header("ซีนถัดไป")]
+public string nextSceneName;             // ว่าง = ไม่เปลี่ยนซีน
+public float loadDelay = 0.8f;           // รอหลังกดเสร็จอันสุดท้ายก่อนเปลี่ยนซีน
+public UnityEngine.UI.Image fadeImage;   // ภาพดำเต็มจอ ไว้เฟดก่อนเปลี่ยนซีน (ว่างได้)
+public float fadeTime = 0.8f;
 
     private int index = -1;
     private float timeLeft;
@@ -107,15 +114,20 @@ public class TaskManager : MonoBehaviour
         }
 
         // จบทุกโจทย์
-        if (i >= tasks.Length)
-        {
-            finished = true;
-            SetUI(false);
-            if (drawing != null) drawing.enabled = false;
-            Debug.Log("จบทุกโจทย์แล้ว");
-            onAllFinished.Invoke();
-            return;
-        }
+       // จบทุกโจทย์
+if (i >= tasks.Length)
+{
+    finished = true;
+    SetUI(false);
+    if (drawing != null) drawing.enabled = false;
+    Debug.Log("จบทุกโจทย์แล้ว");
+    onAllFinished.Invoke();
+
+    if (!string.IsNullOrEmpty(nextSceneName))
+        StartCoroutine(LoadNextScene());
+
+    return;
+}
 
         index = i;
         Task t = tasks[index];
@@ -137,6 +149,32 @@ public class TaskManager : MonoBehaviour
 
         Debug.Log("เริ่ม: " + t.name);
     }
+
+    private IEnumerator LoadNextScene()
+{
+    yield return new WaitForSeconds(loadDelay);
+
+    if (fadeImage != null)
+    {
+        fadeImage.gameObject.SetActive(true);
+
+        Color c = fadeImage.color;
+        float t = 0f;
+
+        while (t < fadeTime)
+        {
+            t += Time.deltaTime;
+            c.a = Mathf.Clamp01(t / fadeTime);
+            fadeImage.color = c;
+            yield return null;
+        }
+
+        c.a = 1f;
+        fadeImage.color = c;
+    }
+
+    SceneManager.LoadScene(nextSceneName);
+}
 
     void SetUI(bool showTimer)
     {

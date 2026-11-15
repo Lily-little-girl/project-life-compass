@@ -2194,7 +2194,7 @@ Transform:
   m_GameObject: {fileID: 872197286}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.27, y: -0.73, z: 0}
+  m_LocalPosition: {x: -4.27, y: -1.54, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4146,29 +4146,6 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     sceneName: 
-  - note: setactoractive
-    waitAfter: 0
-    type: 4
-    actor: {fileID: 985776878}
-    target: {fileID: 0}
-    moveSpeed: 0
-    waitForCompletion: 0
-    flag: 0
-    duration: 0
-    showLeft: 0
-    showRight: 0
-    leftSprite: {fileID: 0}
-    rightSprite: {fileID: 0}
-    leftNameSprite: {fileID: 0}
-    rightNameSprite: {fileID: 0}
-    lines: []
-    targetObject: {fileID: 0}
-    targetRenderer: {fileID: 0}
-    sprite: {fileID: 0}
-    onInvoke:
-      m_PersistentCalls:
-        m_Calls: []
-    sceneName: 
   - note: june yap
     waitAfter: 1
     type: 0
@@ -4611,7 +4588,7 @@ MonoBehaviour:
     onInvoke:
       m_PersistentCalls:
         m_Calls: []
-    sceneName: 
+    sceneName: Sol_to_June
   onFinished:
     m_PersistentCalls:
       m_Calls: []
